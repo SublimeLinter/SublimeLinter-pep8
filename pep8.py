@@ -8,19 +8,18 @@
 # License: MIT
 #
 
-from SublimeLinter.lint import Linter
+from SublimeLinter.lint import PythonLinter
 
 
-class Pep8(Linter):
+class Pep8(PythonLinter):
     language = 'python'
-    cmd = ('pep8', '*', '-')
+    cmd = ('pep8@python', '*', '-')
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?P<type>[EW])\d+ (?P<error>.+)'
     multiline = True
     defaults = {
-        '--select=': [],
-        '--ignore=': [],
+        '--select=,': "",
+        '--ignore=,': "",
         '--max-line-length=': None
     }
-    comment_re = r'\s*#'
     inline_settings = 'max-line-length'
     inline_overrides = ('select', 'ignore')
