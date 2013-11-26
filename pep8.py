@@ -11,7 +11,7 @@
 from SublimeLinter.lint import PythonLinter
 
 
-class Pep8(PythonLinter):
+class PEP8(PythonLinter):
     language = 'python'
     cmd = ('pep8@python', '*', '-')
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?:(?P<error>E)|(?P<warning>W))\d+ (?P<message>.+)'
