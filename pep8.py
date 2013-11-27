@@ -72,10 +72,9 @@ class PEP8(PythonLinter):
             'reporter': Report
         }
 
-        checker = self.module.Checker(
-            filename=os.path.basename(filename),
-            lines=code.splitlines(keepends=True),
-            **kwargs
-        )
+        checker = self.module.StyleGuide(**kwargs)
 
-        return checker.check_all()
+        return checker.input_file(
+            filename=os.path.basename(filename),
+            lines=code.splitlines(keepends=True)
+        )
