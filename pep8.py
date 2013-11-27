@@ -61,18 +61,22 @@ class PEP8(PythonLinter):
     module = 'pep8'
 
     def check(self, code, filename):
-        """Run pep8.Checker on code and return the output."""
+        """Run pep8 on code and return the output."""
 
-        view_settings = self.get_view_settings()
-
-        kwargs = {
-            'select': view_settings.get('select', '').split(','),
-            'ignore': view_settings.get('ignore', '').split(','),
-            'max_line_length': view_settings.get('max-line-length'),
+        options = {
             'reporter': Report
         }
 
-        checker = self.module.StyleGuide(**kwargs)
+        type_map = {
+            'select': [],
+            'ignore': [],
+            'max-line-length': 0,
+            'max-complexity': 0
+        }
+
+        self.build_options(options, type_map, transform=lambda s: s.replace('-', '_'))
+
+        checker = self.module.StyleGuide(**options)
 
         return checker.input_file(
             filename=os.path.basename(filename),
