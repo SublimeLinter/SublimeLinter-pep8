@@ -66,8 +66,8 @@ class PEP8(PythonLinter):
         view_settings = self.get_view_settings()
 
         kwargs = {
-            'select': view_settings.get('select', ''),
-            'ignore': view_settings.get('ignore', ''),
+            'select': view_settings.get('select', '').split(','),
+            'ignore': view_settings.get('ignore', '').split(','),
             'max_line_length': view_settings.get('max-line-length'),
             'reporter': Report
         }
