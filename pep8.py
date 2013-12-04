@@ -17,7 +17,7 @@ try:
 except ImportError:
     StandardReport = None
 
-from SublimeLinter.lint import PythonLinter
+from SublimeLinter.lint import persist, PythonLinter
 
 
 if StandardReport is not None:
@@ -75,6 +75,9 @@ class PEP8(PythonLinter):
         }
 
         self.build_options(options, type_map, transform=lambda s: s.replace('-', '_'))
+
+        if persist.settings.get('debug'):
+            persist.printf('{} options: {}'.format(self.name, options))
 
         checker = self.module.StyleGuide(**options)
 
