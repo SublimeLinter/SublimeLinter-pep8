@@ -52,8 +52,8 @@ class PEP8(PythonLinter):
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?:(?P<error>E)|(?P<warning>W))\d+ (?P<message>.+)'
     multiline = True
     defaults = {
-        '--select=,': "",
-        '--ignore=,': "",
+        '--select=,': '',
+        '--ignore=,': '',
         '--max-line-length=': None
     }
     inline_settings = 'max-line-length'
