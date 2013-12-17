@@ -4,6 +4,7 @@ SublimeLinter-pep8
 This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter3) provides an interface to the [pep8](https://github.com/jcrocholl/pep8). It will be used with files that have the “Python” syntax.
 
 ## Installation
+SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here](https://github.com/SublimeLinter/SublimeLinter.github.io/wiki/Installation).
 
 ### Linter installation
 Before installing this plugin, you must ensure that `pep8` is installed on your system. To install `pep8`, do the following:
@@ -15,7 +16,7 @@ Before installing this plugin, you must ensure that `pep8` is installed on your 
    [sudo] pip-3.x install pep8
    ```
 
-Now you can proceed to install the SublimeLinter-pep8 plugin.
+Once pep8 is installed, you can proceed to install the SublimeLinter-pep8 plugin if it is not yet installed.
 
 ### Plugin installation
 Please use [Package Control](https://sublime.wbond.net/installation) to install the linter plugin. This will ensure that the plugin will be updated when new versions are available. If you want to install from source so you can modify the source code, you probably know what you are doing so we won’t cover that here.
@@ -35,7 +36,7 @@ In addition to the standard SublimeLinter settings, SublimeLinter-pep8 provides 
 |:------|:----------|:------------:|:-------------:|
 |ignore|A comma-separated list of error codes to ignore| |&#10003;|
 |select|A comma-separated list of error codes to select, overrides ignore| |&#10003;|
-|max-line-length|The maximum allowed line length. `null` allows any length.|&#10003;| |
+|max-line-length|The maximum allowed line length. `null` uses the PEP8 default of 79.|&#10003;| |
 
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
