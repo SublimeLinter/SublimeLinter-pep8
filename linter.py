@@ -12,35 +12,7 @@
 
 import os
 
-try:
-    from pep8 import StandardReport
-except ImportError:
-    StandardReport = None
-
-from SublimeLinter.lint import persist, PythonLinter
-
-
-if StandardReport is not None:
-
-    class Report(StandardReport):
-
-        """Provides a report in the form of a single multiline string, without printing."""
-
-        def get_file_results(self):
-            """Collect and return the results for this file."""
-            self._deferred_print.sort()
-            results = ''
-
-            for line_number, offset, code, text, doc in self._deferred_print:
-                results += '{path}:{row}:{col}: {code} {text}\n'.format_map({
-                    'path': self.filename,
-                    'row': self.line_offset + line_number,
-                    'col': offset + 1,
-                    'code': code,
-                    'text': text
-                })
-
-            return results
+from SublimeLinter.lint import persist, PythonLinter, util
 
 
 class PEP8(PythonLinter):
@@ -56,15 +28,19 @@ class PEP8(PythonLinter):
         '--ignore=,': '',
         '--max-line-length=': None
     }
+    error_stream = util.STREAM_BOTH
     inline_settings = 'max-line-length'
     inline_overrides = ('select', 'ignore')
     module = 'pep8'
+
+    # Internal
+    report = None
 
     def check(self, code, filename):
         """Run pep8 on code and return the output."""
 
         options = {
-            'reporter': Report
+            'reporter': self.get_report()
         }
 
         type_map = {
@@ -85,3 +61,32 @@ class PEP8(PythonLinter):
             filename=os.path.basename(filename),
             lines=code.splitlines(keepends=True)
         )
+
+    def get_report(self):
+        """Return the Report class for use by flake8."""
+        if self.report is None:
+            from pep8 import StandardReport
+
+            class Report(StandardReport):
+
+                """Provides a report in the form of a single multiline string, without printing."""
+
+                def get_file_results(self):
+                    """Collect and return the results for this file."""
+                    self._deferred_print.sort()
+                    results = ''
+
+                    for line_number, offset, code, text, doc in self._deferred_print:
+                        results += '{path}:{row}:{col}: {code} {text}\n'.format_map({
+                            'path': self.filename,
+                            'row': self.line_offset + line_number,
+                            'col': offset + 1,
+                            'code': code,
+                            'text': text
+                        })
+
+                    return results
+
+            self.__class__.report = Report
+
+        return self.report
