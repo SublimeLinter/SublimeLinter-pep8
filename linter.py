@@ -12,7 +12,7 @@
 
 import os
 
-from SublimeLinter.lint import persist, PythonLinter, util
+from SublimeLinter.lint import persist, PythonLinter
 
 
 class PEP8(PythonLinter):
@@ -28,7 +28,6 @@ class PEP8(PythonLinter):
         '--ignore=,': '',
         '--max-line-length=': None
     }
-    error_stream = util.STREAM_BOTH
     inline_settings = 'max-line-length'
     inline_overrides = ('select', 'ignore')
     module = 'pep8'
