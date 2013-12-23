@@ -31,6 +31,7 @@ class PEP8(PythonLinter):
     inline_settings = 'max-line-length'
     inline_overrides = ('select', 'ignore')
     module = 'pep8'
+    check_version = True
 
     # Internal
     report = None
