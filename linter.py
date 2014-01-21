@@ -19,7 +19,7 @@ class PEP8(PythonLinter):
 
     """Provides an interface to the pep8 python module/script."""
 
-    syntax = 'python'
+    syntax = ('python', 'python django')
     cmd = ('pep8@python', '*', '-')
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?:(?P<error>E)|(?P<warning>W))\d+ (?P<message>.+)'
     multiline = True
