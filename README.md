@@ -16,6 +16,8 @@ Before installing this plugin, you must ensure that `pep8` is installed on your 
    [sudo] pip-3.x install pep8
    ```
 
+**Note:** This plugin requires `pep8` 1.4.6 or later.
+
 ### Linter configuration
 In order for `pep8` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. Before going any further, please read and follow the steps in [“Finding a linter executable”](http://sublimelinter.readthedocs.org/en/latest/troubleshooting.html#finding-a-linter-executable) through “Validating your PATH” in the documentation.
 

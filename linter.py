@@ -21,6 +21,9 @@ class PEP8(PythonLinter):
 
     syntax = ('python', 'python django')
     cmd = ('pep8@python', '*', '-')
+    version_args = '--version'
+    version_re = r'(?P<version>\d+\.\d+\.\d+)'
+    version_requirement = '>= 1.4.6'
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?:(?P<error>E)|(?P<warning>W))\d+ (?P<message>.+)'
     multiline = True
     defaults = {
