@@ -19,7 +19,7 @@ class PEP8(PythonLinter):
 
     """Provides an interface to the pep8 python module/script."""
 
-    syntax = ('python', 'python django')
+    syntax = 'python'
     cmd = ('pep8@python', '*', '-')
     version_args = '--version'
     version_re = r'(?P<version>\d+\.\d+\.\d+)'
