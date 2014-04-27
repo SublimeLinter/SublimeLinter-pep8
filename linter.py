@@ -55,10 +55,29 @@ class PEP8(PythonLinter):
 
         self.build_options(options, type_map, transform=lambda s: s.replace('-', '_'))
 
-        if persist.debug_mode():
-            persist.printf('{} options: {}'.format(self.name, options))
+        final_options = options.copy()
 
-        checker = self.module.StyleGuide(**options)
+        # Try to read options from pep8 default configuration files (.pep8, tox.ini).
+        # If present, they will override the ones defined by Sublime Linter's config.
+        try:
+            from pep8 import process_options
+            pep8_options, _ = process_options([], True, True, None)
+            pep8_options = vars(pep8_options)
+            del pep8_options['reporter']
+            for opt_n, opt_v in pep8_options.items():
+                if isinstance(final_options.get(opt_n, None), list):
+                    final_options[opt_n] += opt_v
+                else:
+                    final_options[opt_n] = opt_v
+        except SystemExit:
+            # Catch and ignore parser.error() when no config files are found.
+            pass
+
+        if persist.debug_mode():
+            persist.printf('{} ST options: {}'.format(self.name, options))
+            persist.printf('{} options: {}'.format(self.name, final_options))
+
+        checker = self.module.StyleGuide(**final_options)
 
         return checker.input_file(
             filename=os.path.basename(filename),
