@@ -41,7 +41,6 @@ class PEP8(PythonLinter):
 
     def check(self, code, filename):
         """Run pep8 on code and return the output."""
-
         options = {
             'reporter': self.get_report()
         }
