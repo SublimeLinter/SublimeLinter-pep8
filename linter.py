@@ -60,8 +60,15 @@ class PEP8(PythonLinter):
         # Try to read options from pep8 default configuration files (.pep8, tox.ini).
         # If present, they will override the ones defined by Sublime Linter's config.
         try:
-            from pep8 import process_options
-            pep8_options, _ = process_options([], True, True, None)
+            # `onError` will be called by `process_options` when no pep8 configuration file is found.
+            # Override needed to supress OptionParser.error() output in the default parser.
+            def onError(msg):
+                raise SystemExit
+
+            from pep8 import process_options, get_parser
+            parser = get_parser()
+            parser.error = onError
+            pep8_options, _ = process_options([], True, True, parser=parser)
             pep8_options = vars(pep8_options)
             del pep8_options['reporter']
             for opt_n, opt_v in pep8_options.items():
