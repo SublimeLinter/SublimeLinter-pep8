@@ -62,14 +62,14 @@ class PEP8(PythonLinter):
             # `onError` will be called by `process_options` when no pep8 configuration file is found.
             # Override needed to supress OptionParser.error() output in the default parser.
             def onError(msg):
-                raise SystemExit
+                pass
 
             from pep8 import process_options, get_parser
             parser = get_parser()
             parser.error = onError
-            pep8_options, _ = process_options([], True, True, parser=parser)
+            pep8_options, _ = process_options([os.curdir], True, True, parser=parser)
             pep8_options = vars(pep8_options)
-            del pep8_options['reporter']
+            pep8_options.pop('reporter', None)
             for opt_n, opt_v in pep8_options.items():
                 if isinstance(final_options.get(opt_n, None), list):
                     final_options[opt_n] += opt_v
