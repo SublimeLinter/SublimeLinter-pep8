@@ -68,13 +68,17 @@ class PEP8(PythonLinter):
             parser = get_parser()
             parser.error = onError
             pep8_options, _ = process_options([os.curdir], True, True, parser=parser)
-            pep8_options = vars(pep8_options)
-            pep8_options.pop('reporter', None)
-            for opt_n, opt_v in pep8_options.items():
-                if isinstance(final_options.get(opt_n, None), list):
-                    final_options[opt_n] += opt_v
-                else:
-                    final_options[opt_n] = opt_v
+
+            # Merge options only if the pep8 config file actually exists;
+            # pep8 always returns a config filename, even when it doesn't exist!
+            if os.path.isfile(pep8_options.config):
+                pep8_options = vars(pep8_options)
+                pep8_options.pop('reporter', None)
+                for opt_n, opt_v in pep8_options.items():
+                    if isinstance(final_options.get(opt_n, None), list):
+                        final_options[opt_n] += opt_v
+                    else:
+                        final_options[opt_n] = opt_v
         except SystemExit:
             # Catch and ignore parser.error() when no config files are found.
             pass
