@@ -45,6 +45,35 @@ In addition to the standard SublimeLinter settings, SublimeLinter-pep8 provides 
 |select|A comma-separated list of error codes to select, overrides ignore| |&#10003;|
 |max-line-length|The maximum allowed line length. `null` uses the PEP8 default of 79.|&#10003;| |
 
+### Implementing per-project settings
+Typically you will want to configure pep8 on a per-project basis to conform to the coding style for all files in that project. Usually you want to ignore certain pep8 warnings. First you need to find the pep8 error codes from the [pep8 documentation](http://pep8.readthedocs.org/en/latest/intro.html#error-codes). Then you need to configure the pep8 linter to ignore those warnings.
+
+For example, let’s say your project requires python 2.7+, you want the maximum line length to be 512, and you want to ignore warnings about visual indents (pep8 errors E127 and E128):
+
+* If you have not already created a project in Sublime Text, select `Project -> Save Project As...`.
+
+* Select `Project -> Edit Project`.
+
+* At the **top** level of the project’s JSON data, add the following:
+
+        "SublimeLinter":
+        {
+            "@python": 2.7,
+            "linters":
+            {
+                "pep8":
+                {
+                    "@disable": false,
+                    "ignore": "E127,E128",
+                    "max-line-length": 512
+                }
+            }
+        }
+
+* Save the file.
+
+Any time you edit the project and change a linter’s settings, all open files that use that linter will be re-linted to reflect the new settings.
+
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
 
