@@ -80,7 +80,7 @@ This is to avoid extraneous red markers all over your source code files, when pe
 
 * Edit and save any Python source code file and you should see the new linting settings to take effect
 
-* You can add any number for working folders to the project with *Project* -> *Add Folder to Project*
+* You can add any number of working folders to the project with *Project* -> *Add Folder to Project*
 
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
