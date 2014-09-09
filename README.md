@@ -45,6 +45,43 @@ In addition to the standard SublimeLinter settings, SublimeLinter-pep8 provides 
 |select|A comma-separated list of error codes to select, overrides ignore| |&#10003;|
 |max-line-length|The maximum allowed line length. `null` uses the PEP8 default of 79.|&#10003;| |
 
+### Settings quick start
+
+One way to adjust linting settings for your preferences is to use Sublime Text project functionality. 
+This is to avoid extraneous red markers all over your source code files, when pep8 kicks in and some of your coding style does not suit for pep8. A Sublime Text project consists of working folders and settings applied when editing the project files. 
+
+* Create a Sublime Text project (*Project* -> *New workspace for a project*)
+
+* Then edit project settings (*Project* -> *Edit project*) 
+
+* Drop in your preferences for the Python interpreter and linting settings. An example below:
+
+        {
+            "SublimeLinter":
+            {
+                "@python": 2.7,
+                "linters":
+                {
+                    "pep8":
+                    {
+                        "@disable": false,
+                        "ignore": "E501,E128,E127",
+                        "max-line-length": 512
+                    }
+                }
+            },
+            "build_systems":
+            ...
+        }
+
+* You will find pep8 error codes from Sublime Text console (*View* -> *Show Console*). Put ones you wish to disable to `ignore` setting
+
+* Save the settings file
+
+* Edit and save any Python source code file and you should see the new linting settings to take effect
+
+* You can add any number for working folders to the project with *Project* -> *Add Folder to Project*
+
 ## Contributing
 If you would like to contribute enhancements or fixes, please do the following:
 
