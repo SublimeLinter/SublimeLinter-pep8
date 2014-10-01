@@ -3,7 +3,7 @@ SublimeLinter-pep8
 
 [![Build Status](https://travis-ci.org/SublimeLinter/SublimeLinter-pep8.svg?branch=master)](https://travis-ci.org/SublimeLinter/SublimeLinter-pep8)
 
-This linter plugin for [SublimeLinter](http://sublimelinter.readthedocs.org) provides an interface to the [pep8](https://github.com/jcrocholl/pep8). It will be used with files that have the “Python” syntax.
+This linter plugin for [SublimeLinter](http://sublimelinter.readthedocs.org) provides an interface to [pep8](https://github.com/jcrocholl/pep8). It will be used with files that have the “Python” syntax.
 
 ## Installation
 SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here](http://sublimelinter.readthedocs.org/en/latest/installation.html).
