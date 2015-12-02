@@ -26,6 +26,7 @@ class PEP8(PythonLinter):
     version_requirement = '>= 1.4.6'
     regex = r'^.+?:(?P<line>\d+):(?P<col>\d+): (?:(?P<error>E)|(?P<warning>W))\d+ (?P<message>.+)'
     multiline = True
+    default_type = highlight.WARNING
     defaults = {
         '--select=,': '',
         '--ignore=,': '',
