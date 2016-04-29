@@ -67,7 +67,7 @@ class PEP8(PythonLinter):
             from pep8 import process_options, get_parser
             parser = get_parser()
             parser.error = onError
-            pep8_options, _ = process_options([os.curdir], True, True, parser=parser)
+            pep8_options, _ = process_options([os.curdir], True, '', parser=parser)
 
             # Merge options only if the pep8 config file actually exists;
             # pep8 always returns a config filename, even when it doesn't exist!
