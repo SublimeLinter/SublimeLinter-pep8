@@ -1,6 +1,6 @@
 SublimeLinter-pep8
 -------------------------------
-This linter plugin for SublimeLinter provides an interface to pep8.
+This linter plugin for SublimeLinter provides an interface to pycodestyle.
 
 ** IMPORTANT! **
 
