@@ -19,7 +19,7 @@ class PEP8(PythonLinter):
     """Provides an interface to the pep8 python module/script."""
 
     syntax = 'python'
-    cmd = ('pep8@python', '*', '-')
+    cmd = ('pep8', '*', '-')
     version_args = '--version'
     version_re = r'(?P<version>\d+\.\d+\.\d+)'
     version_requirement = '>= 1.4.6'
