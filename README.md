@@ -3,6 +3,8 @@ SublimeLinter-pep8
 
 [![Build Status](https://travis-ci.org/SublimeLinter/SublimeLinter-pep8.svg?branch=master)](https://travis-ci.org/SublimeLinter/SublimeLinter-pep8)
 
+Pep8 has been superseded by [pycodestyle](https://pypi.python.org/pypi/pycodestyle/). There is [a linter for that](https://github.com/SublimeLinter/SublimeLinter-pycodestyle), so you probably want to switch to that.
+
 This linter plugin for [SublimeLinter](http://sublimelinter.readthedocs.org) provides an interface to [pep8](https://github.com/jcrocholl/pep8). It will be used with files that have the “Python” syntax.
 
 ## Installation
